@@ -1,18 +1,19 @@
-// Helper functions for music
+   // Helper functions for music
 #include <stdio.h>
 #include <cs50.h>
 #include <stdlib.h>
 #include <ctype.h>
-// #include "helpers.h"
+#include "helpers.h"
 #include <string.h>
 #include <math.h>
 
 
-int main(void)
+   int main(void)
 {
 
 
     string note = get_string("Note: ");
+
 
     char letter = note[0];
     int octave;
@@ -20,8 +21,8 @@ int main(void)
     int notelen = strlen(note);
     // int totalhz;
     float letterhz = 0.00;
-    float accidentalhz = 0.00;
-    float acctotalhz = 0.00;
+    float accidentalhz = 0.0;
+    float acctotalhz;
     float octavehz;
 
     if (notelen == 3)
@@ -43,26 +44,26 @@ int main(void)
             letterhz = 440;
             break;
         case 66:
-            letterhz = 440 * pow(2, 2./12);
+            letterhz = 440 * pow(2, 2.00/12.00);
             break;
         case 67:
-            letterhz = 440 / pow(2, 9./12);
+            letterhz = 440 / pow(2, 9.00/12.00);
             break;
         case 68:
-            letterhz = 440 / pow(2, 7./12);
+            letterhz = 440 / pow(2, 7.00/12.00);
             break;
         case 69:
-            letterhz = 440 / pow(2, 5./12);
+            letterhz = 440 / pow(2, 5.00/12.00);
             break;
         case 70:
-            letterhz = 440 / pow(2, 4./12);
+            letterhz = 440 / pow(2, 4.00/12.00);
             break;
         case 71:
-            letterhz = 440 / pow(2, 2./12);
+            letterhz = 440 / pow(2, 2.00/12.00);
             break;
     }
-    // letterhz = round(letterhz);
-    printf("%f\n", letterhz);
+    letterhz = round(letterhz);
+    // printf("%i\n", totalhz);
 
     if(accidental == 35)
     {
@@ -79,82 +80,35 @@ int main(void)
         acctotalhz = letterhz;
     }
 
-    printf("%f\n", acctotalhz);
+    // printf("%i\n", acctotalhz);
 
     switch(octave)
     {
         case 52:  // 4th octave
-            octavehz = acctotalhz;
+            octavehz = rint(acctotalhz);
             break;
         case 51:  // 3rd
-            octavehz = acctotalhz / 2.;
+            octavehz = rint(acctotalhz / 2);
             break;
         case 50:  // 2nd
-            octavehz = acctotalhz / 4.;
+            octavehz = rint(acctotalhz / 4);
             break;
         case 49:  // 1st
-            octavehz = acctotalhz / 8.;
+            octavehz = rint(acctotalhz / 8);
             break;
         case 53:  // 5th
-            octavehz = acctotalhz * 2.;
+            octavehz = rint(acctotalhz * 2);
             break;
         case 54: // 6th
-            octavehz = acctotalhz * 4.;
+            octavehz = rint(acctotalhz * 4);
             break;
         case 55:  // 7th
-            octavehz = acctotalhz * 8.;
+            octavehz = rint(acctotalhz * 8);
             break;
         case 56:  // 8th
-            octavehz = acctotalhz * 16.;
+            octavehz = rint(acctotalhz * 16);
     }
     // return octavehz;
-    int ret = lroundf(octavehz);
-    printf("%i\n", ret);
+    printf("%i\n", octavehz);
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Converts a fraction formatted as X/Y to eighths
-// int denom;
-// int numer;
-
-// int beats;
-// string fraction;
-
-// int main(void)
-// {
-//     fraction = get_string("fraction: ");
-
-//     int denom = fraction[2] - '0';
-//     int numer = fraction[0] - '0';
-
-
-//     switch(denom)
-//     {
-//         case 8:
-//             beats = numer;
-//             break;
-//         case 4:
-//             beats = numer *2;
-//             break;
-//         case 2:
-//             beats = numer * 4;
-//             break;
-//     }
-//     printf("%i\n", beats );
-//     return 0
-// }
