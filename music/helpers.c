@@ -1,4 +1,6 @@
 // Helper functions for music
+//NGPR - Overall very well done. I like the use of switch cases a lot. Mentioned in comments below but main feedback
+//would be to have used camel casing so variables are more clear, and using char like 'a' instead of ascii codes
 
 #include <stdio.h>
 #include <cs50.h>
@@ -16,6 +18,7 @@ int duration(string fraction)
     int denom = fraction[2] - '0';
     int numer = fraction[0] - '0';
 
+    //PRNG - this switch can be reduced to an equation, but this is pretty nice and clean to read
     switch (denom)
     {
         case 8:
@@ -35,6 +38,7 @@ int duration(string fraction)
 // Calculates frequency (in Hz) of a note
 int frequency(string note)
 {
+    //PRNG - great variable names. Very clear, though some of them (notelen, letterhz) might benefit from camelcasing
     char letter = note[0];
     int octave;
     int accidental = 0;
@@ -58,6 +62,9 @@ int frequency(string note)
     // printf("letter = %c\n", letter);
     // printf("accidental = %i\n", accidental);
     // printf("octave = %i\n", octave);
+
+    //PRNG - would doing a case using the chars like 'a' have worked? it might make it easier for debugging.
+    //Would also suggest that its case where 440 is a potential "magic number", and storing in variable might be handy
     switch (letter)
     {
         case 65:
@@ -137,6 +144,8 @@ int frequency(string note)
 // Determines whether a string represents a rest
 bool is_rest(string s)
 {
+    //PRNG - I like this approach! I just compared to see if it was "\0" so I'm surprised this works too
+    //Good use of strcpm, but could potentially use a comment to explain what you're doing
     string check = "";
     if (strcmp(s, check) == 0)
     {
